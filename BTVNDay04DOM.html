@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="heading">Bài tập thực hành DOM</h1>
+<p class="para para-1">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<p class="para para-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<p class="para para-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<div class="content">
+    <h2 id="title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptatibus sint
+        molestias sit odit quia labore alias! Accusamus magnam aperiam officiis? Laboriosam numquam at eum dicta quos
+        temporibus in aliquid?</p>
+</div>
+</body>
+</html>
+<script>
+    // 1. Truy cập vào thẻ h1 có id=“heading” thay đổi màu chữ thành ‘red’, và in hoa nội dung của thẻ đó
+    const heading = document.querySelector("#heading");
+    if (heading !== null) {
+        heading.style.color = "red";
+        console.log(heading.textContent.toUpperCase());
+    }
+
+    // 2. Thay đổi màu chữ của tất cả thẻ có class “para” thành màu “blue” và có font-size = “20px”
+    const paras = document.querySelectorAll(".para");
+    paras.forEach(para => {
+        para.style.color = "blue";
+        para.style.fontSize = "20px";
+    });
+
+    // 3. Thêm thẻ a link đến trang ‘facebook’ ở đằng sau thẻ có class “para-3”
+    // Lấy thẻ có class "para-3"
+    const para3 = document.querySelector('.para-3');
+    // Chèn thẻ a với liên kết đến trang "facebook" vào sau thẻ có class "para-3"
+    para3.insertAdjacentHTML('afterend', '<a href="https://www.facebook.com/">Facebook</a>');
+
+
+    // 4. Thay đổi nội dung của thẻ có id=“title” thành “Đây là thẻ tiêu đề”
+    // 5. Thêm class “text-bold” vào thẻ có class=“description” (định nghĩa class “text-bold” có tác dụng in đậm chữ)
+    // 6. Thay thế thẻ có class=“para-3” thành thẻ button có nội dung là “Click me”
+    // 7. opy thẻ có class=“para-2” và hiển thị ngay đằng sau thẻ đó
+    // 8. Xóa thẻ có class=“para-1”
+</script>
