@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<p id="text" class="font-bold text-center mt-12 text-red-500 hover:text-blue-500">Meow Meow</p>
+<div class="justify-center text-center">
+    <button id="btn-1"
+            class="px-8 py-2 text-lg border border-2 border-blue-400 bg-pink-500 hover:border-orange-400 hover:bg-red-500">
+        Change content
+    </button>
+    <button id="btn-2"
+            class="px-8 py-2 text-lg border border-2 border-blue-400 bg-green-500 hover:border-orange-400 hover:bg-blue-500">
+        Change color
+    </button>
+    <button id="btn-3"
+            class="px-8 py-2 text-lg border border-2 border-yellow-400 bg-green-500 hover:border-red-400 hover:bg-gray-600">
+        Change background
+    </button>
+</div>
+</body>
+
+<script>
+    // Button “Change content” sử dụng “HTML-attribute”
+    // Button “Change color” sử dụng “DOM property”
+    // Button “Change background” sử dụng “addEventListener”
+
+    // Yêu cầu 1: Khi nhấn vào button “Change content” hiển thị một nội dung quote bất kỳ
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
+    const charactersLength = characters.length;
+
+    function random_text(text_length) {
+        let result = "";
+        let counter = 0;
+        while (counter < text_length) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            counter += 1;
+        }
+        return result;
+    }
+
+    let btn1 = document.getElementById("btn-1")
+    btn1.addEventListener("click", function () {
+        document.getElementById("text").innerText = random_text(16)
+    })
+
+    // Yêu cầu 2: Khi nhấn vào button “Change color” thì thay đổi màu của thẻ p (sử dụng màu HEX - cần viết 1 function để random màu HEX)
+    function random_color() {
+        let hex = "0123456789ABCDEF"
+        let color = "#"
+        for (let i = 0; i < 6; i++) {
+            color += hex[Math.floor(Math.random() * 16)]
+        }
+        return color
+    }
+
+    let btn2 = document.getElementById("btn-2")
+    let text2 = document.getElementById("text")
+    btn2.addEventListener("click", function () {
+        text2.style.backgroundColor = random_color()
+    })
+
+    // Yêu cầu 3: Khi nhấn vào button “Change background” thì thay đổi màu background-color của thẻ p (sử dụng màu RGB - cần viết 1 function để random màu RGB)
+    const text3 = document.getElementById("text");
+    const btn3 = document.getElementById("btn-3");
+    btn3.addEventListener("click", function () {
+        text3.style.backgroundColor = random_RGB();
+    });
+
+    function random_RGB() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+</script>
+</html>

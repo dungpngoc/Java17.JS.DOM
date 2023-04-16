@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-screen bg-gray-200">
+<div id="div_1" class="h-12 w-12 bg-red-500 absolute top-50 left-50"></div>
+</body>
+
+<script>
+    document.addEventListener("click", function (event) {
+        console.log(event.screenX + "______" + event.screenY)
+        let html = `<div id = "div_1" class = "bg-red-500 rounded-full absolute" style ="width:50px; height = 50px; +margin-top: ${event.offsetY - 25}px;margin-left: ${event.offsetX - 25}px;"></div>`;
+        document.body.insertAdjacentHTML("beforeend", html)
+    })
+</script>
+</html>

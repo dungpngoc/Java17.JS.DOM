@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Circle on Click</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div>
+
+    <style>
+        .circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: lawngreen;
+            border-radius: 50%;
+        }
+    </style>
+</div>
+
+<div>
+    <style>
+        .rectangle {
+            position: absolute;
+            background-color: yellow;
+        }
+    </style>
+</div>
+</body>
+
+<script>
+    // Nhấn chuột tại vị trí bất kỳ trên trang web, tạo 1 hình tròn tại vị trí đó
+    document.addEventListener("click", function (event) {
+        const circle = document.createElement("div");
+        circle.className = "circle";
+        circle.style.left = event.clientX - 25 + "px";
+        circle.style.top = event.clientY - 25 + "px";
+        document.body.appendChild(circle);
+    });
+
+    // Nhấn phím "b" sẽ vẽ 1 hình chữ nhật vào 1 vị trí bất kỳ trên trang web
+    document.addEventListener("keydown", function (events) {
+        if (events.key === "b") {
+            const rectangle = document.createElement("div")
+            rectangle.className = "rectangle"
+            rectangle.style.width = "50px"
+            rectangle.style.height = "50px"
+            rectangle.style.left = Math.random() * window.innerWidth + "px"
+            rectangle.style.top = Math.random() * window.innerHeight + "px"
+            document.body.appendChild(rectangle)
+        }
+    })
+</script>
+</html>

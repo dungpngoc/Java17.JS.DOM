@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<h1 id="title" class="text-center text-red-600 font-bold"> Hello </h1>
+<div class="flex justify-center">
+    <button id="btn" class="px-10 py-2 bg-gray-200 text-red-600 font-size-20 text-lg rounded">Random text</button>
+</div>
+</body>
+<script>
+    // const btn = document.getElementById("btn")
+    // const title = document.getElementById("title")
+    //
+    // btn.addEventListener("click",function (){
+    //     const randomString = Math.random().toString(36).substring(2,20)
+    //     title.innerText = randomString
+    // })
+
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
+    const charactersLength = characters.length;
+
+    function random_text(text_length) {
+        let result = "";
+        let counter = 0;
+        while (counter < text_length) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            counter += 1;
+        }
+        return result;
+    }
+
+    let btn = document.getElementById("btn")
+    btn.addEventListener("click", function (){
+        document.getElementById("title").innerText = random_text(16)
+    })
+
+
+</script>
+</html>
