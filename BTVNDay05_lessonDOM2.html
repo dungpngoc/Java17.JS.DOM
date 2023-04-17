@@ -42,14 +42,6 @@
 </body>
 
 <script>
-    let colors = [
-        '#3498db',
-        '#9b59b6',
-        '#e74c3c',
-        '#2c3e50',
-        '#d35400',
-    ]
-
 
     const colors = [
         '#3498db',
@@ -57,26 +49,49 @@
         '#e74c3c',
         '#2c3e50',
         '#d35400'
-    ];
+    ]
 
-    const boxContainer = document.querySelector('.boxes');
-    const score = document.querySelector('.points');
-
-    let count = 0;
-
-    function createBox() {
+    // Render số box = số lượng màu ra ngoài màn hình bằng javascript (5 box)
+    // Box được tạo bởi thẻ div, có class=“box”, background tương ứng với từng mã màu
+    const boxesContainer = document.querySelector('.boxes');
+    for (let i = 0; i < 5; i++) {
         const box = document.createElement('div');
         box.classList.add('box');
-        box.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        box.addEventListener('click', () => {
-            count++;
-            score.textContent = count;
-        });
-        boxContainer.appendChild(box);
+        box.style.backgroundColor = colors[i];
+        boxesContainer.appendChild(box);
     }
 
-    for (let i = 0; i < 5; i++) {
-        createBox();
-    }
+    // Cập nhật số lượng total box trong thẻ <span> có class “points”
+    const pointsSpan = document.querySelector('.points');
+    const boxes = boxesContainer.querySelectorAll('.box');
+    pointsSpan.textContent = boxes.length;
+
+
+    // Khi bấm vào box bất kỳ thì box đó biến mất, đồng thời số lượng total box giảm đi 1
+    boxesContainer.addEventListener('click', function (event) {
+        if (event.target.classList.contains('box')) {
+            event.target.remove();
+            pointsSpan.textContent = boxesContainer.querySelectorAll('.box').length;
+        }
+    });
+
+
+    // Khi click vào nút “more box” thì số lượng box tăng lên 5 (tương ứng với 5 màu trong mảng colors), đồng thời số lượng total box cũng tăng lên 5
+
+    const moreBoxBtn = document.querySelector('#btn');
+    moreBoxBtn.addEventListener('click', function() {
+        // Tạo 5 box mới và thêm vào thẻ chứa các box
+        for (let i = 0; i < 5; i++) {
+            const box = document.createElement('div');
+            box.classList.add('box');
+            box.style.backgroundColor = colors[i % colors.length];
+            boxesContainer.appendChild(box);
+        }
+        // Cập nhật số lượng total box bằng số lượng box hiện tại
+        pointsSpan.textContent = boxesContainer.querySelectorAll('.box').length;
+    });
+
+
+
 </script>
 </html>
